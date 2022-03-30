@@ -1,1 +1,21 @@
-<p>textarea-tool works!</p>
+<mat-card id="card">
+  <div id="wrapper" fxLayout="row">
+    <div id="text" fxFlex="80">
+      <mat-form-field
+        id="input-area"
+        hintLabel="Max 410 characters"
+        appearance="fill"
+      >
+        <mat-label>Enter some input</mat-label>
+        <input matInput #input maxlength="410" placeholder="Hello! Today..." />
+        <mat-hint align="end">{{ input.value?.length || 0 }}/410</mat-hint>
+      </mat-form-field>
+    </div>
+    <div id="button-wrapper" fxFlex="20">
+      <button id="send-button" mat-raised-button color="accent">
+        <span id="button-text" fxHide.xs fxShow>Send</span>
+        <mat-icon fxHide fxShow.xs fxFlex.md="0">send</mat-icon>
+      </button>
+    </div>
+  </div>
+</mat-card>

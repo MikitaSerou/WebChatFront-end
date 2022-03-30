@@ -1,15 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: 'app-textarea-tool',
-  templateUrl: './textarea-tool.component.html',
-  styleUrls: ['./textarea-tool.component.css']
+  selector: "app-textarea-tool",
+  templateUrl: "./textarea-tool.component.html",
+  styleUrls: ["./textarea-tool.component.sass"]
 })
 export class TextareaToolComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

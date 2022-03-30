@@ -1,15 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: 'app-message-space',
-  templateUrl: './message-space.component.html',
-  styleUrls: ['./message-space.component.css']
+  selector: "app-message-space",
+  templateUrl: "./message-space.component.html",
+  styleUrls: ["./message-space.component.sass"]
 })
 export class MessageSpaceComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }
