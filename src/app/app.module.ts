@@ -18,13 +18,18 @@ import { MatListModule } from "@angular/material/list";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { MatButtonToggleModule } from "@angular/material/button-toggle";
 import { FlexLayoutModule, FlexModule } from "@angular/flex-layout";
+import { MessageComponent } from "./message/message.component";
+import { MatChipsModule } from "@angular/material/chips";
+import { AvatarModule } from "ngx-avatar";
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     MessageSpaceComponent,
-    TextareaToolComponent
+    TextareaToolComponent,
+    MessageComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +46,10 @@ import { FlexLayoutModule, FlexModule } from "@angular/flex-layout";
     MatProgressSpinnerModule,
     MatButtonToggleModule,
     FlexModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatChipsModule,
+    AvatarModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
