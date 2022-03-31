@@ -1,0 +1,47 @@
+@import "src/app/app.component.sass"
+
+$input-height: 60px
+
+#greetings
+  color: yellow
+  h1
+    margin: auto
+    text-align: center
+
+
+.content-wrapper
+  height: 100%
+  background-color: $background-color
+  alignment: center
+
+
+#login-form
+  position: absolute
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%)
+
+
+mat-form-field
+  height: $input-height
+  mat-label
+    color: $accent-color
+  input
+    color: yellow
+
+.example-container
+  width: 300px
+
+::ng-deep snack-bar-container.snackbar-error
+  color: red
+
+#button-wrapper
+  margin-left: 10px
+  width: 100%
+  //height: 100%
+  align-content: center
+  margin-top: auto
+  margin-bottom: auto
+  //margin-bottom: 10px
+  button
+    height: $input-height - 8

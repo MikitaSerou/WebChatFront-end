@@ -2,9 +2,9 @@ import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 
 import { AppComponent } from "./app.component";
-import { HeaderComponent } from "./header/header.component";
-import { MessageSpaceComponent } from "./message-space/message-space.component";
-import { TextareaToolComponent } from "./textarea-tool/textarea-tool.component";
+import { HeaderComponent } from "./component/header/header.component";
+import { MessageSpaceComponent } from "./component/message-space/message-space.component";
+import { TextareaToolComponent } from "./component/textarea-tool/textarea-tool.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MatSliderModule } from "@angular/material/slider";
 import { MatGridListModule } from "@angular/material/grid-list";
@@ -18,10 +18,16 @@ import { MatListModule } from "@angular/material/list";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { MatButtonToggleModule } from "@angular/material/button-toggle";
 import { FlexLayoutModule, FlexModule } from "@angular/flex-layout";
-import { MessageComponent } from "./message/message.component";
+import { MessageComponent } from "./component/message/message.component";
 import { MatChipsModule } from "@angular/material/chips";
 import { AvatarModule } from "ngx-avatar";
 import { HttpClientModule } from "@angular/common/http";
+import { LoginPageComponent } from "./component/login-page/login-page.component";
+import { AppRoutingModule } from "./app-routing.module";
+import { ReactiveFormsModule } from "@angular/forms";
+import { ErrorPageComponent } from "./component/error-page/error-page.component";
+import { ChatPageComponent } from "./component/chat-page/chat-page.component";
+import { MatSnackBarModule } from "@angular/material/snack-bar";
 
 @NgModule({
   declarations: [
@@ -29,9 +35,13 @@ import { HttpClientModule } from "@angular/common/http";
     HeaderComponent,
     MessageSpaceComponent,
     TextareaToolComponent,
-    MessageComponent
+    MessageComponent,
+    LoginPageComponent,
+    ErrorPageComponent,
+    ChatPageComponent
   ],
   imports: [
+    AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
     MatSliderModule,
@@ -48,8 +58,10 @@ import { HttpClientModule } from "@angular/common/http";
     FlexModule,
     FlexLayoutModule,
     MatChipsModule,
+    MatSnackBarModule,
     AvatarModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
