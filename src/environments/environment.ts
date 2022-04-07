@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  appName: "Balabolka"
+  APP_NAME: "Balabolka",
+  SOCKET_CONNECTION_URL: "http://localhost:8080/ws/"
 };
 
 /*

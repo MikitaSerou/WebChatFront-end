@@ -1,5 +1,6 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { environment } from "../../../environments/environment";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-header",
@@ -7,9 +8,15 @@ import { environment } from "../../../environments/environment";
   styleUrls: ["./header.component.sass"]
 })
 export class HeaderComponent implements OnInit {
-  appName: string = environment.appName;
+  @Input() username: string;
+  appName: string = environment.APP_NAME;
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {}
+
+  logout() {
+    window.sessionStorage.removeItem("username");
+    this.router.navigate(["/login"]);
+  }
 }

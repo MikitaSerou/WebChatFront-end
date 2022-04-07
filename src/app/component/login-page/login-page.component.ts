@@ -19,9 +19,7 @@ export class LoginPageComponent {
   username: FormControl = new FormControl("", [Validators.required]);
   submitted: boolean = false;
 
-  isLoggedIn = false;
-  isLoginFailed = false;
-  errorMessage = "";
+  messages: any = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -33,15 +31,13 @@ export class LoginPageComponent {
     });
   }
 
-  // openLoginFailedSnackBar() {
-  //   if (this.isLoginFailed)
-  //     this._snackBar.open("Login failed. Check your credentials.", "", {
-  //       panelClass: ["snackbar-error"],
-  //       duration: 3000
-  //     });
-  // }
+  addMessage() {
+    this.messages.push("kaka");
+  }
 
   onSubmit(): void {
+    window.sessionStorage.setItem("username", this.username.value);
+    this.router.navigate(["/chat"]);
     // this.authService
     //   .login(this.loginForm.value.username, this.loginForm.value.password)
     //   .subscribe(
@@ -64,4 +60,12 @@ export class LoginPageComponent {
   reloadPage(): void {
     window.location.reload();
   }
+
+  // openLoginFailedSnackBar() {
+  //   if (this.isLoginFailed)
+  //     this._snackBar.open("This login is taken :(", "", {
+  //       panelClass: ["snackbar-error"],
+  //       duration: 3000
+  //     });
+  // }
 }
