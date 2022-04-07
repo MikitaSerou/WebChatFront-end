@@ -1,9 +1,11 @@
 <mat-toolbar color="primary">
   <div style="margin: auto">
-    <span><mat-icon>wechat</mat-icon></span>
+    <ngx-avatar name="Aageridon7"></ngx-avatar>
+    <!--TODO Check is this match with avatar color in message component-->
   </div>
+  <h1 style="margin-left: 30px">{{ username }}</h1>
   <span class="example-spacer"></span>
   <span>{{ appName }}</span>
   <span class="example-spacer"></span>
-  <button mat-stroked-button>Logout</button>
+  <button mat-stroked-button (click)="logout()">Logout</button>
 </mat-toolbar>

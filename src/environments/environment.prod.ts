@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  appName: "Balabolka"
+  APP_NAME: "Balabolka"
 };
