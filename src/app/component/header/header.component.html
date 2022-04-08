@@ -1,11 +1,17 @@
 <mat-toolbar color="primary">
-  <div style="margin: auto">
+  <div style="margin: auto" matTooltip="{{ username }}">
     <ngx-avatar name="Aageridon7" size="35"></ngx-avatar>
     <!--TODO Check is this match with avatar color in message component-->
   </div>
-  <h1 style="margin-left: 5px">{{ username }}</h1>
   <span class="spacer"></span>
   <span>{{ appName }}</span>
   <span class="spacer"></span>
-  <button mat-stroked-button (click)="logout()">Logout</button>
+  <button
+    mat-icon-button
+    color="accent"
+    aria-label="Example icon button with a heart icon"
+    (click)="openDialog()"
+  >
+    <mat-icon>logout</mat-icon>
+  </button>
 </mat-toolbar>

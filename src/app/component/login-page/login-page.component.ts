@@ -17,9 +17,6 @@ export class LoginPageComponent {
   hide: boolean = true;
   loginForm: FormGroup;
   username: FormControl = new FormControl("", [Validators.required]);
-  submitted: boolean = false;
-
-  messages: any = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -31,30 +28,9 @@ export class LoginPageComponent {
     });
   }
 
-  addMessage() {
-    this.messages.push("kaka");
-  }
-
   onSubmit(): void {
     window.sessionStorage.setItem("username", this.username.value);
     this.router.navigate(["/chat"]);
-    // this.authService
-    //   .login(this.loginForm.value.username, this.loginForm.value.password)
-    //   .subscribe(
-    //     (data) => {
-    //       this.authService.saveToken(data.token);
-    //       this.authService.saveUser(data);
-    //       this.isLoginFailed = false;
-    //       this.isLoggedIn = true;
-    //       this.router.navigate(['/']);
-    //     },
-    //     (error) => {
-    //       this.errorMessage = error.message;
-    //       this.isLoginFailed = true;
-    //       console.log(error);
-    //       this.openLoginFailedSnackBar();
-    //     }
-    //   );
   }
 
   reloadPage(): void {

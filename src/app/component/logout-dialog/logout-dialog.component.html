@@ -1,0 +1,10 @@
+<h2 mat-dialog-title>Confirm action</h2>
+<mat-dialog-content class="mat-typography">
+  Are you sure you want to leave chat?
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button color="warn" [mat-dialog-close]="true" cdkFocusInitial>
+    Logout
+  </button>
+</mat-dialog-actions>

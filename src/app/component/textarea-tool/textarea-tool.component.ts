@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
 
 @Component({
   selector: "app-textarea-tool",
@@ -6,7 +7,19 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./textarea-tool.component.sass"]
 })
 export class TextareaToolComponent implements OnInit {
-  constructor() {}
+  messageForm: FormGroup;
+  messageText: FormControl = new FormControl("");
+
+  constructor(private formBuilder: FormBuilder) {
+    this.messageForm = this.formBuilder.group({
+      messageText: this.messageText
+    });
+  }
 
   ngOnInit(): void {}
+
+  onSubmit() {
+    console.log(this.messageForm.value);
+    this.messageText.reset();
+  }
 }

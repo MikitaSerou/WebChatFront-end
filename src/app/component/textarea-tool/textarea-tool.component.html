@@ -1,5 +1,10 @@
 <mat-card id="card">
-  <div id="wrapper" fxLayout="row">
+  <form
+    [formGroup]="messageForm"
+    (ngSubmit)="onSubmit()"
+    id="wrapper"
+    fxLayout="row"
+  >
     <div id="text" fxFlex="80">
       <mat-form-field
         id="input-area"
@@ -7,7 +12,13 @@
         appearance="fill"
       >
         <mat-label>Enter some input</mat-label>
-        <input matInput #input maxlength="410" placeholder="Hello! Today..." />
+        <input
+          matInput
+          [formControl]="messageText"
+          #input
+          maxlength="410"
+          placeholder="Hello! Today..."
+        />
         <mat-hint align="end">{{ input.value?.length || 0 }}/410</mat-hint>
       </mat-form-field>
     </div>
@@ -17,5 +28,5 @@
         <mat-icon fxHide fxShow.xs fxFlex.md="0">send</mat-icon>
       </button>
     </div>
-  </div>
+  </form>
 </mat-card>

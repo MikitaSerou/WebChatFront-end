@@ -28,6 +28,11 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { ErrorPageComponent } from "./component/error-page/error-page.component";
 import { ChatPageComponent } from "./component/chat-page/chat-page.component";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
+import { UserStatusMessageComponent } from "./component/user-status-message/user-status-message.component";
+import { MatDialogModule } from "@angular/material/dialog";
+import { LogoutDialogComponent } from "./component/logout-dialog/logout-dialog.component";
+import { MatTooltipModule } from "@angular/material/tooltip";
+import { MatRippleModule } from "@angular/material/core";
 
 @NgModule({
   declarations: [
@@ -38,7 +43,9 @@ import { MatSnackBarModule } from "@angular/material/snack-bar";
     MessageComponent,
     LoginPageComponent,
     ErrorPageComponent,
-    ChatPageComponent
+    ChatPageComponent,
+    UserStatusMessageComponent,
+    LogoutDialogComponent
   ],
   imports: [
     AppRoutingModule,
@@ -61,7 +68,10 @@ import { MatSnackBarModule } from "@angular/material/snack-bar";
     MatSnackBarModule,
     AvatarModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDialogModule,
+    MatTooltipModule,
+    MatRippleModule
   ],
   providers: [],
   bootstrap: [AppComponent]
