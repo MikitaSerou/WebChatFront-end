@@ -1,4 +1,5 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
+import { ChatMessage, MessageType } from "../../model/chatMessage";
 
 @Component({
   selector: "app-user-status-message",
@@ -6,7 +7,23 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./user-status-message.component.sass"]
 })
 export class UserStatusMessageComponent implements OnInit {
+  @Input() messageJSON: string;
+  message: ChatMessage;
+  isJoinMessage: boolean;
+  isLeaveMessage: boolean;
+
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.message = JSON.parse(this.messageJSON);
+    this.setTypeOfMessage(this.message.type);
+  }
+
+  private setTypeOfMessage(type: MessageType) {
+    if (type == MessageType.JOIN) {
+      this.isJoinMessage = true;
+    } else if (type == MessageType.LEAVE) {
+      this.isLeaveMessage = true;
+    }
+  }
 }

@@ -1,4 +1,3 @@
-<app-message> </app-message>
-<app-user-status-message></app-user-status-message>
-<app-message> </app-message>
-<app-message> </app-message>
+<div *ngFor="let message of messages">
+  <app-user-status-message [messageJSON]="message"></app-user-status-message>
+</div>

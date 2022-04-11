@@ -2,13 +2,14 @@ import { Injectable } from "@angular/core";
 import { environment } from "../../environments/environment";
 import * as SockJS from "sockjs-client";
 import { Stomp } from "@stomp/stompjs";
+import { ChatMessage } from "../model/chatMessage";
 
 @Injectable({
   providedIn: "root"
 })
 export class MessageService {
   public stompClient: any;
-  public msg: any = [];
+  public messages: any = [];
 
   constructor() {
     this.initializeWebSocketConnection();
@@ -20,16 +21,28 @@ export class MessageService {
     this.stompClient = Stomp.over(ws);
     const that = this;
     this.stompClient.connect({}, function () {
-      that.stompClient.subscribe("topic", (message: any) => {
+      that.stompClient.subscribe("/topic/publicChatRoom", (message: any) => {
         if (message.body) {
           // @ts-ignore
-          that.msg.push(message.body);
+          that.messages.push(message.body);
         }
       });
     });
   }
 
-  sendMessage(mesage: any) {
-    this.stompClient.send("/app/topic/publicChatRoom", mesage);
+  sendMessage(message: ChatMessage) {
+    this.stompClient.send("/app/chat.addUser", {}, JSON.stringify(message));
+  }
+
+  sendMessageFromScratch(sender: string, message: string, content?: string) {
+    this.stompClient.send("/app/chat.addUser", {}, JSON.stringify(message));
+  }
+
+  disconnect() {
+    this.messages = [];
+    if (this.stompClient !== null) {
+      this.stompClient.disconnect();
+    }
+    console.log("Disconnected");
   }
 }

@@ -33,6 +33,9 @@ import { MatDialogModule } from "@angular/material/dialog";
 import { LogoutDialogComponent } from "./component/logout-dialog/logout-dialog.component";
 import { MatTooltipModule } from "@angular/material/tooltip";
 import { MatRippleModule } from "@angular/material/core";
+import { MatSelectModule } from "@angular/material/select";
+import { MatRadioModule } from "@angular/material/radio";
+import { DragDropModule } from "@angular/cdk/drag-drop";
 
 @NgModule({
   declarations: [
@@ -71,7 +74,10 @@ import { MatRippleModule } from "@angular/material/core";
     ReactiveFormsModule,
     MatDialogModule,
     MatTooltipModule,
-    MatRippleModule
+    MatRippleModule,
+    MatSelectModule,
+    MatRadioModule,
+    DragDropModule
   ],
   providers: [],
   bootstrap: [AppComponent]

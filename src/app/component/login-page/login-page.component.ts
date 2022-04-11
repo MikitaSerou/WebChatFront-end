@@ -14,7 +14,6 @@ import { Router } from "@angular/router";
   styleUrls: ["./login-page.component.sass"]
 })
 export class LoginPageComponent {
-  hide: boolean = true;
   loginForm: FormGroup;
   username: FormControl = new FormControl("", [Validators.required]);
 
@@ -29,19 +28,8 @@ export class LoginPageComponent {
   }
 
   onSubmit(): void {
-    window.sessionStorage.setItem("username", this.username.value);
+    let usernameFromForm: string = this.username.value;
+    window.sessionStorage.setItem("username", usernameFromForm);
     this.router.navigate(["/chat"]);
   }
-
-  reloadPage(): void {
-    window.location.reload();
-  }
-
-  // openLoginFailedSnackBar() {
-  //   if (this.isLoginFailed)
-  //     this._snackBar.open("This login is taken :(", "", {
-  //       panelClass: ["snackbar-error"],
-  //       duration: 3000
-  //     });
-  // }
 }

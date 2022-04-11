@@ -3,6 +3,7 @@ import { environment } from "../../../environments/environment";
 import { Router } from "@angular/router";
 import { MatDialog } from "@angular/material/dialog";
 import { LogoutDialogComponent } from "../logout-dialog/logout-dialog.component";
+import { MessageService } from "../../service/message.service";
 
 @Component({
   selector: "app-header",
@@ -13,22 +14,26 @@ export class HeaderComponent implements OnInit {
   @Input() username: string;
   appName: string = environment.APP_NAME;
 
-  constructor(private router: Router, public dialog: MatDialog) {}
+  constructor(
+    private router: Router,
+    public dialog: MatDialog,
+    private messageService: MessageService
+  ) {}
 
   ngOnInit(): void {}
+
+  openDialog() {
+    const dialogRef = this.dialog.open(LogoutDialogComponent);
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.messageService.disconnect();
+        this.logout();
+      }
+    });
+  }
 
   logout() {
     window.sessionStorage.removeItem("username");
     this.router.navigate(["/login"]);
-  }
-
-  openDialog() {
-    const dialogRef = this.dialog.open(LogoutDialogComponent);
-
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        this.logout();
-      }
-    });
   }
 }
