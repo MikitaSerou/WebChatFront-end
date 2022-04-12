@@ -2,6 +2,7 @@ export interface ChatMessage {
   sender: string;
   content?: string;
   type: MessageType;
+  date: Date;
 }
 
 export enum MessageType {

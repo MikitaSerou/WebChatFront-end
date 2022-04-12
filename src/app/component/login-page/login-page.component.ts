@@ -32,7 +32,7 @@ export class LoginPageComponent {
   onSubmit(): void {
     let usernameFromForm: string = this.username.value;
     window.sessionStorage.setItem("username", usernameFromForm);
-    this.messageService.initializeWebSocketConnection();
+    this.messageService.initializeWebSocketConnection(this.username.value);
     this.router.navigate(["/chat"]);
   }
 }

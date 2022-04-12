@@ -9,12 +9,12 @@ import { ChatMessage, MessageType } from "../model/chatMessage";
 })
 export class MessageService {
   public stompClient: any;
-  public messages: any = [];
+  public messages: ChatMessage[] = [];
   public ws: any;
 
   constructor() {}
 
-  initializeWebSocketConnection() {
+  initializeWebSocketConnection(username: string) {
     const serverUrl = `${environment.CONNECTION_URL}/ws/`;
     this.ws = new SockJS(serverUrl);
     this.stompClient = Stomp.over(this.ws);
@@ -27,13 +27,22 @@ export class MessageService {
         }
       });
     });
+    setTimeout(() => {
+      this.addUserMessage(username);
+    }, 1000);
   }
 
-  addUserMessage(message: ChatMessage) {
-    this.stompClient.send("/app/chat.addUser", {}, JSON.stringify(message));
+  addUserMessage(username: string) {
+    let joinMessage = {
+      sender: username,
+      type: MessageType.JOIN
+    };
+    this.stompClient.send("/app/chat.addUser", {}, JSON.stringify(joinMessage));
   }
 
   sendMessage(message: ChatMessage) {
+    message.date = new Date();
+    console.log("Дата ебать: " + message.date);
     this.stompClient.send("/app/chat.sendMessage", {}, JSON.stringify(message));
   }
 
@@ -41,7 +50,8 @@ export class MessageService {
     this.sendMessage({
       sender: sender,
       type: type,
-      content: content
+      content: content,
+      date: new Date()
     });
   }
 
