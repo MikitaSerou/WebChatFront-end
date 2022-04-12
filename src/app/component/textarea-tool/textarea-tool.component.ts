@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
 import { MessageService } from "../../service/message.service";
-import { ChatMessage, MessageType } from "../../model/chatMessage";
+import { MessageType } from "../../model/chatMessage";
 
 @Component({
   selector: "app-textarea-tool",
@@ -25,15 +25,18 @@ export class TextareaToolComponent implements OnInit {
 
   onSubmit() {
     console.log(this.messageForm.value);
-    this.sendMessage(this.messageForm.value.messageText);
+    this.sendMessage(
+      window.sessionStorage.getItem("username"),
+      this.messageForm.value.messageText
+    );
     this.messageText.reset();
   }
 
-  private sendMessage(username: string): void {
-    let message: ChatMessage = {
-      sender: username,
-      type: MessageType.JOIN
-    };
-    this.messageService.sendMessage(message);
+  private sendMessage(username: string, content: string): void {
+    this.messageService.sendMessageFromScratch(
+      username,
+      MessageType.CHAT,
+      content
+    );
   }
 }

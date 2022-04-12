@@ -36,6 +36,7 @@ import { MatRippleModule } from "@angular/material/core";
 import { MatSelectModule } from "@angular/material/select";
 import { MatRadioModule } from "@angular/material/radio";
 import { DragDropModule } from "@angular/cdk/drag-drop";
+import { MessageService } from "./service/message.service";
 
 @NgModule({
   declarations: [
@@ -79,7 +80,7 @@ import { DragDropModule } from "@angular/cdk/drag-drop";
     MatRadioModule,
     DragDropModule
   ],
-  providers: [],
+  providers: [MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
