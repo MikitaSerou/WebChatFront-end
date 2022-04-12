@@ -11,9 +11,7 @@ export class MessageService {
   public stompClient: any;
   public messages: any = [];
 
-  constructor() {
-    this.initializeWebSocketConnection();
-  }
+  constructor() {}
 
   initializeWebSocketConnection() {
     const serverUrl = environment.SOCKET_CONNECTION_URL;
