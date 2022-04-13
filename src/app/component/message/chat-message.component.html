@@ -1,107 +1,19 @@
-<div class="message-wrapper" fxLayout="row" fxLayoutAlign="start center">
-  <mat-card class="message companion-message">
-    <div fxLayout="row" fxLayoutAlign="start center">
+<div class="message-wrapper" fxLayout="row" [fxLayoutAlign]="wrapperAlign">
+  <mat-card [ngClass]="{ 'companion-message': !isOwnMessage }" class="message">
+    <div id="username" fxLayout="row" [fxLayoutAlign]="usernameAlign">
       <div>
-        <ngx-avatar mat-card-avatar name="Mageridon7" size="35"></ngx-avatar>
+        <ngx-avatar
+          mat-card-avatar
+          name="{{ message.sender }}"
+          size="35"
+        ></ngx-avatar>
       </div>
-      <h3>Mageridon</h3>
+      <h3>{{ message.sender }}</h3>
     </div>
     <hr />
     <mat-card-content>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia natus
-      quis vitae voluptate. Commodi doloribus ea id iusto, magnam nobis
-      provident quia quo vitae. Adipisci eligendi fugit quae reiciendis sed?
+      {{ message.content }}
     </mat-card-content>
-    <span class="message-time">10:32</span>
+    <span class="message-time">{{ message.date | date: " h:mm" }}</span>
   </mat-card>
 </div>
-
-<div class="message-wrapper" fxLayout="row" fxLayoutAlign="end center">
-  <mat-card class="message">
-    <div fxLayout="row" fxLayoutAlign="end center">
-      <div>
-        <ngx-avatar mat-card-avatar name="Aageridon7" size="35"></ngx-avatar>
-      </div>
-      <div>
-        <h3>Aspadar</h3>
-      </div>
-    </div>
-    <hr />
-    <mat-card-content>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, dolores?
-    </mat-card-content>
-    <span class="message-time">10:33</span>
-  </mat-card>
-</div>
-
-<div class="message-wrapper" fxLayout="row" fxLayoutAlign="start center">
-  <mat-card class="message companion-message">
-    <div fxLayout="row" fxLayoutAlign="start center">
-      <div>
-        <ngx-avatar mat-card-avatar name="Mageridon7" size="35"></ngx-avatar>
-      </div>
-      <h3>Mageridon</h3>
-    </div>
-    <hr />
-    <mat-card-content>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia natus
-      quis vitae voluptate. Commodi doloribus ea id iusto, magnam nobis
-      provident quia quo vitae. Adipisci eligendi fugit quae reiciendis sed?
-    </mat-card-content>
-    <span class="message-time">10:32</span>
-  </mat-card>
-</div>
-
-<!--<div class="message-wrapper" fxLayout="row" fxLayoutAlign="end center">-->
-<!--  <mat-card class="message">-->
-<!--    <div fxLayout="row" fxLayoutAlign="end center">-->
-<!--      <div>-->
-<!--        <ngx-avatar mat-card-avatar name="Aageridon7" size="35"></ngx-avatar>-->
-<!--      </div>-->
-<!--      <div>-->
-<!--        <h3>Aspadar</h3>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--    <hr />-->
-<!--    <mat-card-content>-->
-<!--      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, dolores?-->
-<!--    </mat-card-content>-->
-<!--    <span class="message-time">10:33</span>-->
-<!--  </mat-card>-->
-<!--</div>-->
-
-<!--<div class="message-wrapper" fxLayout="row" fxLayoutAlign="start center">-->
-<!--  <mat-card class="message companion-message">-->
-<!--    <div fxLayout="row" fxLayoutAlign="start center">-->
-<!--      <div>-->
-<!--        <ngx-avatar mat-card-avatar name="Mageridon7" size="35"></ngx-avatar>-->
-<!--      </div>-->
-<!--      <h3>Mageridon</h3>-->
-<!--    </div>-->
-<!--    <hr />-->
-<!--    <mat-card-content>-->
-<!--      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia natus-->
-<!--      quis vitae voluptate. Commodi doloribus ea id iusto, magnam nobis-->
-<!--      provident quia quo vitae. Adipisci eligendi fugit quae reiciendis sed?-->
-<!--    </mat-card-content>-->
-<!--    <span class="message-time">10:32</span>-->
-<!--  </mat-card>-->
-<!--</div>-->
-
-<!--<div class="message-wrapper" fxLayout="row" fxLayoutAlign="end center">-->
-<!--  <mat-card class="message">-->
-<!--    <div fxLayout="row" fxLayoutAlign="end center">-->
-<!--      <div>-->
-<!--        <ngx-avatar mat-card-avatar name="Aageridon7" size="35"></ngx-avatar>-->
-<!--      </div>-->
-<!--      <div>-->
-<!--        <h3>Aspadar</h3>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--    <hr />-->
-<!--    <mat-card-content>-->
-<!--      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, dolores?-->
-<!--    </mat-card-content>-->
-<!--    <span class="message-time">10:33</span>-->
-<!--  </mat-card>-->
-<!--</div>-->

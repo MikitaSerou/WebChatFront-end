@@ -4,6 +4,6 @@
     [messageJSON]="message"
   ></app-user-status-message>
   <ng-template #chatMessage>
-    <app-chat-message></app-chat-message>
+    <app-chat-message [messageJSON]="message"></app-chat-message>
   </ng-template>
 </div>

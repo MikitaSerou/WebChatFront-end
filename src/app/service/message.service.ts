@@ -2,14 +2,14 @@ import { Injectable } from "@angular/core";
 import { environment } from "../../environments/environment";
 import * as SockJS from "sockjs-client";
 import { Stomp } from "@stomp/stompjs";
-import { ChatMessage, MessageType } from "../model/chatMessage";
+import { BrokerMessage, MessageType } from "../model/brokerMessage";
 
 @Injectable({
   providedIn: "root"
 })
 export class MessageService {
   public stompClient: any;
-  public messages: ChatMessage[] = [];
+  public messages: BrokerMessage[] = [];
   public ws: any;
 
   constructor() {}
@@ -42,7 +42,7 @@ export class MessageService {
     this.stompClient.send("/app/chat.addUser", {}, JSON.stringify(joinMessage));
   }
 
-  sendMessage(message: ChatMessage) {
+  sendMessage(message: BrokerMessage) {
     message.date = new Date();
     console.log("Дата ебать: " + message.date);
     this.stompClient.send("/app/chat.sendMessage", {}, JSON.stringify(message));

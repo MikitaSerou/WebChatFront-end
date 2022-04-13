@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
 import { MessageService } from "../../service/message.service";
-import { MessageType } from "../../model/chatMessage";
+import { MessageType } from "../../model/brokerMessage";
 
 @Component({
   selector: "app-textarea-tool",

@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { MessageService } from "../../service/message.service";
-import { ChatMessage, MessageType } from "../../model/chatMessage";
+import { BrokerMessage, MessageType } from "../../model/brokerMessage";
 
 @Component({
   selector: "app-message-space",
@@ -13,7 +13,7 @@ export class MessageSpaceComponent implements OnInit {
   ngOnInit(): void {}
 
   isConnectOrDisconnectMessage(message: any) {
-    let parsedMessage: ChatMessage = JSON.parse(message);
+    let parsedMessage: BrokerMessage = JSON.parse(message);
     return (
       parsedMessage.type == MessageType.JOIN ||
       parsedMessage.type == MessageType.LEAVE

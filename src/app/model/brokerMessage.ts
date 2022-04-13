@@ -1,4 +1,4 @@
-export interface ChatMessage {
+export interface BrokerMessage {
   sender: string;
   content?: string;
   type: MessageType;

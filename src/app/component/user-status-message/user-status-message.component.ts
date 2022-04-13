@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { ChatMessage, MessageType } from "../../model/chatMessage";
+import { BrokerMessage, MessageType } from "../../model/brokerMessage";
 
 @Component({
   selector: "app-user-status-message",
@@ -8,7 +8,7 @@ import { ChatMessage, MessageType } from "../../model/chatMessage";
 })
 export class UserStatusMessageComponent implements OnInit {
   @Input() messageJSON: any;
-  message: ChatMessage;
+  message: BrokerMessage;
   isJoinMessage: boolean;
   isLeaveMessage: boolean;
 
