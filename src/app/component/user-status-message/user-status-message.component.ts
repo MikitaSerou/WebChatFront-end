@@ -7,7 +7,7 @@ import { ChatMessage, MessageType } from "../../model/chatMessage";
   styleUrls: ["./user-status-message.component.sass"]
 })
 export class UserStatusMessageComponent implements OnInit {
-  @Input() messageJSON: string;
+  @Input() messageJSON: any;
   message: ChatMessage;
   isJoinMessage: boolean;
   isLeaveMessage: boolean;

@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { MessageService } from "../../service/message.service";
+import { ChatMessage, MessageType } from "../../model/chatMessage";
 
 @Component({
   selector: "app-message-space",
@@ -7,10 +8,15 @@ import { MessageService } from "../../service/message.service";
   styleUrls: ["./message-space.component.sass"]
 })
 export class MessageSpaceComponent implements OnInit {
-  messages: any = this.messageService.messages;
-  currentUsername: string = window.sessionStorage.getItem("username");
-
-  constructor(private messageService: MessageService) {}
+  constructor(public messageService: MessageService) {}
 
   ngOnInit(): void {}
+
+  isConnectOrDisconnectMessage(message: any) {
+    let parsedMessage: ChatMessage = JSON.parse(message);
+    return (
+      parsedMessage.type == MessageType.JOIN ||
+      parsedMessage.type == MessageType.LEAVE
+    );
+  }
 }
