@@ -20,22 +20,24 @@ export class MessageService {
     this.stompClient = Stomp.over(this.ws);
     const that = this;
     this.stompClient.connect({}, function () {
-      that.stompClient.subscribe("/topic/publicChatRoom", (message: any) => {
-        if (message.body) {
-          // @ts-ignore
-          that.messages.push(message.body);
-        }
-      });
+      that.subscribeToTopic(that);
+      that.addUserMessage(username);
     });
-    setTimeout(() => {
-      this.addUserMessage(username);
-    }, 1000);
+  }
+
+  private subscribeToTopic(that: this) {
+    that.stompClient.subscribe("/topic/publicChatRoom", (message: any) => {
+      if (message.body) {
+        that.messages.push(message.body);
+      }
+    });
   }
 
   addUserMessage(username: string) {
     let joinMessage = {
       sender: username,
-      type: MessageType.JOIN
+      type: MessageType.JOIN,
+      date: new Date()
     };
     this.stompClient.send("/app/chat.addUser", {}, JSON.stringify(joinMessage));
   }

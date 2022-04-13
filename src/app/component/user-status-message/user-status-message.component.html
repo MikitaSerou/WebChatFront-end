@@ -13,6 +13,7 @@
           <span>{{ message.sender }}</span>
           <span *ngIf="isJoinMessage">&nbsp;joined</span>
           <span *ngIf="isLeaveMessage">&nbsp;leaved</span>
+          <span>{{ message.date | date: " h:mm:ss" }}</span>
         </h2>
       </div>
     </div>
