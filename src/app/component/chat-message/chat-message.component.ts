@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { BrokerMessage } from "../../model/brokerMessage";
+import { BrokerMessage } from "../../model/broker-message";
 
 enum FlexAlign {
   LEFT = "start center",

@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { environment } from "../../environments/environment";
 import * as SockJS from "sockjs-client";
 import { Stomp } from "@stomp/stompjs";
-import { BrokerMessage, MessageType } from "../model/brokerMessage";
+import { BrokerMessage, MessageType } from "../model/broker-message";
 
 @Injectable({
   providedIn: "root"
@@ -44,7 +44,6 @@ export class MessageService {
 
   sendMessage(message: BrokerMessage) {
     message.date = new Date();
-    console.log("Дата ебать: " + message.date);
     this.stompClient.send("/app/chat.sendMessage", {}, JSON.stringify(message));
   }
 

@@ -8,12 +8,12 @@
           size="35"
         ></ngx-avatar>
       </div>
-      <h3>{{ message.sender }}</h3>
+      <h2>{{ message.sender }}</h2>
     </div>
     <hr />
     <mat-card-content>
       {{ message.content }}
     </mat-card-content>
-    <span class="message-time">{{ message.date | date: " h:mm" }}</span>
+    <span class="message-time">{{ message.date | date: " HH:mm" }}</span>
   </mat-card>
 </div>

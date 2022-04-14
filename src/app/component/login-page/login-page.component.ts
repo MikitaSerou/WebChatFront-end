@@ -7,7 +7,6 @@ import {
 } from "@angular/forms";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { Router } from "@angular/router";
-import { MessageService } from "../../service/message.service";
 
 @Component({
   selector: "app-login-page",
@@ -21,8 +20,7 @@ export class LoginPageComponent {
   constructor(
     private formBuilder: FormBuilder,
     private _snackBar: MatSnackBar,
-    private router: Router,
-    private messageService: MessageService
+    private router: Router
   ) {
     this.loginForm = this.formBuilder.group({
       username: this.username
@@ -32,7 +30,6 @@ export class LoginPageComponent {
   onSubmit(): void {
     let usernameFromForm: string = this.username.value;
     window.sessionStorage.setItem("username", usernameFromForm);
-    this.messageService.initializeWebSocketConnection(this.username.value);
     this.router.navigate(["/chat"]);
   }
 }
