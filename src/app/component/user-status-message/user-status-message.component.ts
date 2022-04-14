@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { BrokerMessage, MessageType } from "../../model/brokerMessage";
+import { BrokerMessage, MessageType } from "../../model/broker-message";
 
 @Component({
   selector: "app-user-status-message",

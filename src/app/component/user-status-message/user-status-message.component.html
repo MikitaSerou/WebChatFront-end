@@ -1,21 +1,23 @@
 <mat-divider></mat-divider>
-<div fxLayout="row" fxLayoutAlign="center center">
+<div
+  id="user-status-message"
+  [ngClass]="{
+    'join-message': isJoinMessage,
+    'leave-message': isLeaveMessage
+  }"
+  fxLayout="row"
+  fxLayoutAlign="center center"
+>
   <mat-list-item>
     <div id="message-row" fxLayout="row" fxLayoutAlign="center center">
-      <div><ngx-avatar name="{{ message.sender }}" size="30"></ngx-avatar></div>
+      <mat-icon *ngIf="isJoinMessage">person_add_alt_1</mat-icon>
+      <mat-icon *ngIf="isLeaveMessage">person_remove_alt_1</mat-icon>
       <div>
-        <h2
-          [ngClass]="{
-            'join-message': isJoinMessage,
-            'leave-message': isLeaveMessage
-          }"
-        >
-          <span>{{ message.sender }}</span>
-          <span *ngIf="isJoinMessage">&nbsp;joined</span>
-          <span *ngIf="isLeaveMessage">&nbsp;leaved</span>
-          <span>{{ message.date | date: " h:mm:ss" }}</span>
-        </h2>
+        <ngx-avatar name="{{ message.sender }}" size="30"></ngx-avatar>
       </div>
+      <h2>
+        <span>{{ message.sender }}</span>
+      </h2>
     </div>
   </mat-list-item>
 </div>

@@ -18,7 +18,7 @@ import { MatListModule } from "@angular/material/list";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { MatButtonToggleModule } from "@angular/material/button-toggle";
 import { FlexLayoutModule, FlexModule } from "@angular/flex-layout";
-import { ChatMessageComponent } from "./component/message/chat-message.component";
+import { ChatMessageComponent } from "./component/chat-message/chat-message.component";
 import { MatChipsModule } from "@angular/material/chips";
 import { AvatarModule } from "ngx-avatar";
 import { HttpClientModule } from "@angular/common/http";

@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { MessageService } from "../../service/message.service";
-import { BrokerMessage, MessageType } from "../../model/brokerMessage";
+import { BrokerMessage, MessageType } from "../../model/broker-message";
 
 @Component({
   selector: "app-message-space",
