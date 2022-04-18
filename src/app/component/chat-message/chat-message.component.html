@@ -1,0 +1,26 @@
+<div class="message-wrapper" fxLayout="row" [fxLayoutAlign]="wrapperAlign">
+  <mat-card
+    [ngClass]="{ 'companion-message': !isOwnMessage }"
+    class="message"
+    [@EnterLeave]="{
+      value: ':leave',
+      params: { direction: animationDirection }
+    }"
+  >
+    <div id="username" fxLayout="row" [fxLayoutAlign]="usernameAlign">
+      <div>
+        <ngx-avatar
+          mat-card-avatar
+          name="{{ message.sender }}"
+          size="35"
+        ></ngx-avatar>
+      </div>
+      <h2>{{ message.sender }}</h2>
+    </div>
+    <hr />
+    <mat-card-content>
+      {{ message.content }}
+    </mat-card-content>
+    <span class="message-time">{{ message.date | date: " HH:mm" }}</span>
+  </mat-card>
+</div>

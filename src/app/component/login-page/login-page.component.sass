@@ -1,6 +1,6 @@
 @import "src/app/app.component.sass"
 
-$input-height: 60px
+$input-height: 65px
 
 \:host
   display: block
@@ -9,24 +9,34 @@ $input-height: 60px
   height: 100%
 
 #greetings
-  color: $secondary-color
+  color: $primary-color
+  text-shadow: 1px 0 1px $accent-color
+  margin-bottom: 30px
   h1
     margin: auto
     text-align: center
+    font-size: 100px
+    font-weight: bold
 
+@media (max-width: 465px)
+  #greetings
+    h1
+      font-size: 70px
+
+#card
+  width: 320px
+  margin: auto
 
 .content-wrapper
   height: 100%
   background-color: $background-color
   alignment: center
 
-
 #login-form
   position: absolute
   top: 50%
   left: 50%
   transform: translate(-50%, -50%)
-
 
 mat-form-field
   height: $input-height
@@ -44,10 +54,8 @@ mat-form-field
 #button-wrapper
   margin-left: 10px
   width: 100%
-  //height: 100%
-  align-content: center
   margin-top: auto
   margin-bottom: auto
-  //margin-bottom: 10px
   button
-    height: $input-height - 8
+    height: $input-height
+

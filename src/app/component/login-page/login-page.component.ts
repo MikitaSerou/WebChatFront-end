@@ -1,4 +1,10 @@
-import { Component } from "@angular/core";
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  ViewChild
+} from "@angular/core";
 import {
   FormBuilder,
   FormControl,
@@ -13,15 +19,16 @@ import { Router } from "@angular/router";
   templateUrl: "./login-page.component.html",
   styleUrls: ["./login-page.component.sass"]
 })
-export class LoginPageComponent {
-  hide: boolean = true;
+export class LoginPageComponent implements AfterViewInit {
   loginForm: FormGroup;
   username: FormControl = new FormControl("", [Validators.required]);
+  @ViewChild("input") private input: ElementRef;
 
   constructor(
     private formBuilder: FormBuilder,
     private _snackBar: MatSnackBar,
-    private router: Router
+    private router: Router,
+    private changeDetector: ChangeDetectorRef
   ) {
     this.loginForm = this.formBuilder.group({
       username: this.username
@@ -29,19 +36,17 @@ export class LoginPageComponent {
   }
 
   onSubmit(): void {
-    window.sessionStorage.setItem("username", this.username.value);
+    let usernameFromForm: string = this.username.value;
+    window.sessionStorage.setItem("username", usernameFromForm);
     this.router.navigate(["/chat"]);
   }
 
-  reloadPage(): void {
-    window.location.reload();
+  ngAfterViewInit(): void {
+    this.setFocusOnInput();
+    this.changeDetector.detectChanges();
   }
 
-  // openLoginFailedSnackBar() {
-  //   if (this.isLoginFailed)
-  //     this._snackBar.open("This login is taken :(", "", {
-  //       panelClass: ["snackbar-error"],
-  //       duration: 3000
-  //     });
-  // }
+  private setFocusOnInput() {
+    this.input.nativeElement.focus();
+  }
 }

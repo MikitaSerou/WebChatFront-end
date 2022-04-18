@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { MessageService } from "../../service/message.service";
 
 @Component({
   selector: "app-error-page",
@@ -6,7 +7,10 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./error-page.component.sass"]
 })
 export class ErrorPageComponent implements OnInit {
-  constructor() {}
+  constructor(private messageService: MessageService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    window.sessionStorage.removeItem("username");
+    this.messageService.disconnect();
+  }
 }

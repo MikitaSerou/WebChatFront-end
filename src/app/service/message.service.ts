@@ -2,34 +2,66 @@ import { Injectable } from "@angular/core";
 import { environment } from "../../environments/environment";
 import * as SockJS from "sockjs-client";
 import { Stomp } from "@stomp/stompjs";
+import { BrokerMessage, MessageType } from "../model/broker-message";
 
 @Injectable({
   providedIn: "root"
 })
 export class MessageService {
   public stompClient: any;
-  public msg: any = [];
+  public messages: BrokerMessage[] = [];
+  public ws: any;
 
-  constructor() {
-    this.initializeWebSocketConnection();
-  }
+  constructor() {}
 
-  initializeWebSocketConnection() {
-    const serverUrl = environment.SOCKET_CONNECTION_URL;
-    const ws = new SockJS(serverUrl);
-    this.stompClient = Stomp.over(ws);
+  initializeWebSocketConnection(username: string) {
+    const serverUrl = `${environment.CONNECTION_URL}/ws/`;
+    this.ws = new SockJS(serverUrl);
+    this.stompClient = Stomp.over(this.ws);
     const that = this;
     this.stompClient.connect({}, function () {
-      that.stompClient.subscribe("topic", (message: any) => {
-        if (message.body) {
-          // @ts-ignore
-          that.msg.push(message.body);
-        }
-      });
+      that.subscribeToTopic(that);
+      that.addUserMessage(username);
     });
   }
 
-  sendMessage(mesage: any) {
-    this.stompClient.send("/app/topic/publicChatRoom", mesage);
+  private subscribeToTopic(that: this) {
+    that.stompClient.subscribe("/topic/publicChatRoom", (message: any) => {
+      if (message.body) {
+        that.messages.push(message.body);
+      }
+    });
+  }
+
+  addUserMessage(username: string) {
+    let joinMessage = {
+      sender: username,
+      type: MessageType.JOIN,
+      date: new Date()
+    };
+    this.stompClient.send("/app/chat.addUser", {}, JSON.stringify(joinMessage));
+  }
+
+  sendMessage(message: BrokerMessage) {
+    message.date = new Date();
+    this.stompClient.send("/app/chat.sendMessage", {}, JSON.stringify(message));
+  }
+
+  sendMessageFromScratch(sender: string, type: MessageType, content?: string) {
+    this.sendMessage({
+      sender: sender,
+      type: type,
+      content: content,
+      date: new Date()
+    });
+  }
+
+  disconnect() {
+    this.messages = [];
+    if (this.stompClient !== null) {
+      this.stompClient.disconnect();
+    }
+    this.ws.close();
+    console.log("Disconnected");
   }
 }

@@ -1,4 +1,9 @@
-<app-message> </app-message>
-<app-user-status-message></app-user-status-message>
-<app-message> </app-message>
-<app-message> </app-message>
+<div id="content-wrapper" *ngFor="let message of messageService.messages">
+  <app-user-status-message
+    *ngIf="isConnectOrDisconnectMessage(message); else chatMessage"
+    [messageJSON]="message"
+  ></app-user-status-message>
+  <ng-template #chatMessage>
+    <app-chat-message [messageJSON]="message"></app-chat-message>
+  </ng-template>
+</div>

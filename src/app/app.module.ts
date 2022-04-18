@@ -18,7 +18,7 @@ import { MatListModule } from "@angular/material/list";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { MatButtonToggleModule } from "@angular/material/button-toggle";
 import { FlexLayoutModule, FlexModule } from "@angular/flex-layout";
-import { MessageComponent } from "./component/message/message.component";
+import { ChatMessageComponent } from "./component/chat-message/chat-message.component";
 import { MatChipsModule } from "@angular/material/chips";
 import { AvatarModule } from "ngx-avatar";
 import { HttpClientModule } from "@angular/common/http";
@@ -33,6 +33,10 @@ import { MatDialogModule } from "@angular/material/dialog";
 import { LogoutDialogComponent } from "./component/logout-dialog/logout-dialog.component";
 import { MatTooltipModule } from "@angular/material/tooltip";
 import { MatRippleModule } from "@angular/material/core";
+import { MatSelectModule } from "@angular/material/select";
+import { MatRadioModule } from "@angular/material/radio";
+import { DragDropModule } from "@angular/cdk/drag-drop";
+import { MessageService } from "./service/message.service";
 
 @NgModule({
   declarations: [
@@ -40,7 +44,7 @@ import { MatRippleModule } from "@angular/material/core";
     HeaderComponent,
     MessageSpaceComponent,
     TextareaToolComponent,
-    MessageComponent,
+    ChatMessageComponent,
     LoginPageComponent,
     ErrorPageComponent,
     ChatPageComponent,
@@ -71,9 +75,12 @@ import { MatRippleModule } from "@angular/material/core";
     ReactiveFormsModule,
     MatDialogModule,
     MatTooltipModule,
-    MatRippleModule
+    MatRippleModule,
+    MatSelectModule,
+    MatRadioModule,
+    DragDropModule
   ],
-  providers: [],
+  providers: [MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
