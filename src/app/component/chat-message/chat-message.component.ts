@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { BrokerMessage } from "../../model/broker-message";
+import { enterLeft } from "../../animations/animations";
 
 enum FlexAlign {
   LEFT = "start center",
@@ -9,7 +10,8 @@ enum FlexAlign {
 @Component({
   selector: "app-chat-message",
   templateUrl: "./chat-message.component.html",
-  styleUrls: ["./chat-message.component.sass"]
+  styleUrls: ["./chat-message.component.sass"],
+  animations: [enterLeft]
 })
 export class ChatMessageComponent implements OnInit {
   @Input() messageJSON: any;
@@ -17,6 +19,7 @@ export class ChatMessageComponent implements OnInit {
   isOwnMessage: boolean;
   wrapperAlign: string;
   usernameAlign: string;
+  animationDirection: string;
 
   constructor() {}
 
@@ -24,6 +27,9 @@ export class ChatMessageComponent implements OnInit {
     this.message = JSON.parse(this.messageJSON);
     this.isOwnMessage =
       this.message.sender == window.sessionStorage.getItem("username");
+    this.animationDirection = this.isOwnMessage
+      ? "translateX(+100%)"
+      : "translateX(-100%)";
     this.setAlign();
   }
 

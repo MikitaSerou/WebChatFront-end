@@ -1,5 +1,12 @@
 <div class="message-wrapper" fxLayout="row" [fxLayoutAlign]="wrapperAlign">
-  <mat-card [ngClass]="{ 'companion-message': !isOwnMessage }" class="message">
+  <mat-card
+    [ngClass]="{ 'companion-message': !isOwnMessage }"
+    class="message"
+    [@EnterLeave]="{
+      value: ':leave',
+      params: { direction: animationDirection }
+    }"
+  >
     <div id="username" fxLayout="row" [fxLayoutAlign]="usernameAlign">
       <div>
         <ngx-avatar
