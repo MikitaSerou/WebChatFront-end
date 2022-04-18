@@ -1,6 +1,8 @@
 <div class="content-wrapper">
   <div id="login-form">
-    <div id="greetings"><h1>Balabolka</h1></div>
+    <div id="greetings">
+      <h1>{{ appName }}</h1>
+    </div>
     <br />
     <mat-card id="card" fxLayout="row" fxLayoutAlign="space-evenly center">
       <form class="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">

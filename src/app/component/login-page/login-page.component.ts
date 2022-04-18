@@ -13,6 +13,7 @@ import {
 } from "@angular/forms";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { Router } from "@angular/router";
+import { environment } from "../../../environments/environment";
 
 @Component({
   selector: "app-login-page",
@@ -20,6 +21,7 @@ import { Router } from "@angular/router";
   styleUrls: ["./login-page.component.sass"]
 })
 export class LoginPageComponent implements AfterViewInit {
+  appName = environment.APP_NAME;
   loginForm: FormGroup;
   username: FormControl = new FormControl("", [Validators.required]);
   @ViewChild("input") private input: ElementRef;
