@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { BrokerMessage } from "../../model/broker-message";
-import { enterLeft } from "../../animations/animations";
+import { enterFromSide } from "../../animations/animations";
 
 enum FlexAlign {
   LEFT = "start center",
@@ -11,7 +11,7 @@ enum FlexAlign {
   selector: "app-chat-message",
   templateUrl: "./chat-message.component.html",
   styleUrls: ["./chat-message.component.sass"],
-  animations: [enterLeft]
+  animations: [enterFromSide]
 })
 export class ChatMessageComponent implements OnInit {
   @Input() messageJSON: any;

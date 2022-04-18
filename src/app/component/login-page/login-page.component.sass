@@ -9,10 +9,23 @@ $input-height: 65px
   height: 100%
 
 #greetings
-  color: $secondary-color
+  color: $primary-color
+  text-shadow: 1px 0 1px $accent-color
+  margin-bottom: 30px
   h1
     margin: auto
     text-align: center
+    font-size: 100px
+    font-weight: bold
+
+@media (max-width: 465px)
+  #greetings
+    h1
+      font-size: 70px
+
+#card
+  width: 320px
+  margin: auto
 
 .content-wrapper
   height: 100%

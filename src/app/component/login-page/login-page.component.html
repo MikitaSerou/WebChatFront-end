@@ -1,11 +1,11 @@
 <div class="content-wrapper">
   <div id="login-form">
-    <div id="greetings"><h1>Welcome dear friend!</h1></div>
+    <div id="greetings"><h1>Balabolka</h1></div>
     <br />
-    <mat-card fxLayout="row" fxLayoutAlign="space-evenly center">
+    <mat-card id="card" fxLayout="row" fxLayoutAlign="space-evenly center">
       <form class="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <mat-form-field appearance="outline">
-          <mat-label>Nikname:</mat-label>
+          <mat-label>@Nikname:</mat-label>
           <input
             [formControl]="username"
             matInput

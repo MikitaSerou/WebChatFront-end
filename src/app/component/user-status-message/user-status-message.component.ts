@@ -1,10 +1,12 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { BrokerMessage, MessageType } from "../../model/broker-message";
+import { fadeAnimation } from "../../animations/animations";
 
 @Component({
   selector: "app-user-status-message",
   templateUrl: "./user-status-message.component.html",
-  styleUrls: ["./user-status-message.component.sass"]
+  styleUrls: ["./user-status-message.component.sass"],
+  animations: [fadeAnimation]
 })
 export class UserStatusMessageComponent implements OnInit {
   @Input() messageJSON: any;

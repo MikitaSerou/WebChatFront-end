@@ -23,7 +23,7 @@ export const fadeAnimation = trigger("fadeAnimation", [
   ])
 ]);
 
-export const enterLeft = trigger("EnterLeave", [
+export const enterFromSide = trigger("EnterLeave", [
   state("flyIn", style({ transform: "translateX(0)" })),
   transition(":enter", [
     style({ transform: "{{direction}}" }),
