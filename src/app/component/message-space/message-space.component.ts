@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { MessageService } from "../../service/message.service";
 import { BrokerMessage, MessageType } from "../../model/broker-message";
 
@@ -7,7 +7,7 @@ import { BrokerMessage, MessageType } from "../../model/broker-message";
   templateUrl: "./message-space.component.html",
   styleUrls: ["./message-space.component.sass"]
 })
-export class MessageSpaceComponent implements OnInit {
+export class MessageSpaceComponent implements OnInit, OnDestroy{
   constructor(public messageService: MessageService) {}
 
   ngOnInit(): void {}
@@ -18,5 +18,9 @@ export class MessageSpaceComponent implements OnInit {
       parsedMessage.type == MessageType.JOIN ||
       parsedMessage.type == MessageType.LEAVE
     );
+  }
+
+  ngOnDestroy(): void {
+    this.messageService.disconnect();
   }
 }
