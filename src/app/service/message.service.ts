@@ -11,18 +11,24 @@ export class MessageService {
   public stompClient: any;
   public messages: BrokerMessage[] = [];
   public ws: any;
+  isConnected: boolean = false;
 
   constructor() {}
 
   initializeWebSocketConnection(username: string) {
-    const serverUrl = `${environment.CONNECTION_URL}/ws/`;
-    this.ws = new SockJS(serverUrl);
-    this.stompClient = Stomp.over(this.ws);
-    const that = this;
-    this.stompClient.connect({}, function () {
-      that.subscribeToTopic(that);
-      that.addUserMessage(username);
-    });
+    if (this.isConnected) {
+      this.initializeWebSocketConnection(username);
+    } else {
+      const serverUrl = `${environment.CONNECTION_URL}/ws/`;
+      this.ws = new SockJS(serverUrl);
+      this.stompClient = Stomp.over(this.ws);
+      const that = this;
+      this.stompClient.connect({}, function () {
+        that.subscribeToTopic(that);
+        that.addUserMessage(username);
+      });
+      that.isConnected = true;
+    }
   }
 
   private subscribeToTopic(that: this) {
@@ -57,6 +63,7 @@ export class MessageService {
   }
 
   disconnect() {
+    this.isConnected = false;
     this.messages = [];
     if (this.stompClient !== null) {
       this.stompClient.disconnect();

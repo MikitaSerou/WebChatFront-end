@@ -1,9 +1,22 @@
-<div id="content-wrapper" *ngFor="let message of messageService.messages">
-  <app-user-status-message
-    *ngIf="isConnectOrDisconnectMessage(message); else chatMessage"
-    [messageJSON]="message"
-  ></app-user-status-message>
-  <ng-template #chatMessage>
-    <app-chat-message [messageJSON]="message"></app-chat-message>
-  </ng-template>
+<div
+  fxLayout="column"
+  fxLayoutAlign="center center"
+  id="spinner-wrapper"
+  *ngIf="!messageService.isConnected"
+>
+  <mat-spinner></mat-spinner>
+  <div>
+    <h1>Try to connect...</h1>
+  </div>
+</div>
+<div *ngIf="messageService.isConnected">
+  <div id="content-wrapper" *ngFor="let message of messageService.messages">
+    <app-user-status-message
+      *ngIf="isConnectOrDisconnectMessage(message); else chatMessage"
+      [messageJSON]="message"
+    ></app-user-status-message>
+    <ng-template #chatMessage>
+      <app-chat-message [messageJSON]="message"></app-chat-message>
+    </ng-template>
+  </div>
 </div>

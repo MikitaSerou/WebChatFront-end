@@ -7,7 +7,7 @@ import { BrokerMessage, MessageType } from "../../model/broker-message";
   templateUrl: "./message-space.component.html",
   styleUrls: ["./message-space.component.sass"]
 })
-export class MessageSpaceComponent implements OnInit, OnDestroy{
+export class MessageSpaceComponent implements OnInit, OnDestroy {
   constructor(public messageService: MessageService) {}
 
   ngOnInit(): void {}
