@@ -16,19 +16,23 @@ export class MessageService {
   constructor() {}
 
   initializeWebSocketConnection(username: string) {
-    if (this.isConnected) {
-      this.initializeWebSocketConnection(username);
+    if (this.isConnected == false) {
+      setTimeout(() => this.connect(username), 300);
     } else {
-      const serverUrl = `${environment.CONNECTION_URL}/ws/`;
-      this.ws = new SockJS(serverUrl);
-      this.stompClient = Stomp.over(this.ws);
-      const that = this;
-      this.stompClient.connect({}, function () {
-        that.subscribeToTopic(that);
-        that.addUserMessage(username);
-      });
-      that.isConnected = true;
+      this.connect(username);
     }
+  }
+
+  private connect(username: string) {
+    const serverUrl = `${environment.CONNECTION_URL}/ws/`;
+    this.ws = new SockJS(serverUrl);
+    this.stompClient = Stomp.over(this.ws);
+    const that = this;
+    this.stompClient.connect({}, function () {
+      that.subscribeToTopic(that);
+      that.addUserMessage(username);
+    });
+    that.isConnected = true;
   }
 
   private subscribeToTopic(that: this) {
