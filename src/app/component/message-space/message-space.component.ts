@@ -8,9 +8,13 @@ import { BrokerMessage, MessageType } from "../../model/broker-message";
   styleUrls: ["./message-space.component.sass"]
 })
 export class MessageSpaceComponent implements OnInit, OnDestroy {
+  isConnected: boolean = false;
+
   constructor(public messageService: MessageService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.isConnected = this.messageService.isConnected;
+  }
 
   isConnectOrDisconnectMessage(message: any) {
     let parsedMessage: BrokerMessage = JSON.parse(message);

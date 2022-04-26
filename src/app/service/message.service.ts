@@ -16,10 +16,12 @@ export class MessageService {
   constructor() {}
 
   initializeWebSocketConnection(username: string) {
+    this.connect(username);
     if (this.isConnected == false) {
-      setTimeout(() => this.connect(username), 300);
-    } else {
+      this.initializeWebSocketConnection(username);
       this.connect(username);
+    } else {
+      console.log("Connected to topics");
     }
   }
 
