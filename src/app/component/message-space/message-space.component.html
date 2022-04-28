@@ -1,15 +1,15 @@
 <div
+  id="spinner-wrapper"
   fxLayout="column"
   fxLayoutAlign="center center"
-  id="spinner-wrapper"
-  *ngIf="!isConnected"
+  *ngIf="messageService.isDisconnected() | async"
 >
   <mat-spinner></mat-spinner>
   <div>
     <h1>Try to connect...</h1>
   </div>
 </div>
-<div *ngIf="isConnected">
+<div>
   <div id="content-wrapper" *ngFor="let message of messageService.messages">
     <app-user-status-message
       *ngIf="isConnectOrDisconnectMessage(message); else chatMessage"

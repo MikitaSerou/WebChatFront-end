@@ -3,6 +3,7 @@ import { environment } from "../../environments/environment";
 import * as SockJS from "sockjs-client";
 import { Stomp } from "@stomp/stompjs";
 import { BrokerMessage, MessageType } from "../model/broker-message";
+import { BehaviorSubject } from "rxjs";
 
 @Injectable({
   providedIn: "root"
@@ -11,18 +12,15 @@ export class MessageService {
   public stompClient: any;
   public messages: BrokerMessage[] = [];
   public ws: any;
-  isConnected: boolean = false;
+  private disconnected: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
+    true
+  );
 
   constructor() {}
 
   initializeWebSocketConnection(username: string) {
     this.connect(username);
-    if (this.isConnected == false) {
-      this.initializeWebSocketConnection(username);
-      this.connect(username);
-    } else {
-      console.log("Connected to topics");
-    }
+    console.log("Connected to topic");
   }
 
   private connect(username: string) {
@@ -31,10 +29,10 @@ export class MessageService {
     this.stompClient = Stomp.over(this.ws);
     const that = this;
     this.stompClient.connect({}, function () {
+      that.setConnectedStatus(false);
       that.subscribeToTopic(that);
       that.addUserMessage(username);
     });
-    that.isConnected = true;
   }
 
   private subscribeToTopic(that: this) {
@@ -69,12 +67,20 @@ export class MessageService {
   }
 
   disconnect() {
-    this.isConnected = false;
+    this.setConnectedStatus(true);
     this.messages = [];
     if (this.stompClient !== null) {
       this.stompClient.disconnect();
     }
     this.ws.close();
     console.log("Disconnected");
+  }
+
+  isDisconnected(): BehaviorSubject<boolean> {
+    return this.disconnected;
+  }
+
+  setConnectedStatus(status: boolean) {
+    this.disconnected.next(status);
   }
 }
