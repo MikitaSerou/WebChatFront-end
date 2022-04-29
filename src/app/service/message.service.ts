@@ -12,6 +12,7 @@ export class MessageService {
   public stompClient: any;
   public messages: BrokerMessage[] = [];
   public ws: any;
+  private manualDisconnected: boolean = false;
   private disconnected: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
     true
   );
@@ -19,20 +20,35 @@ export class MessageService {
   constructor() {}
 
   initializeWebSocketConnection(username: string) {
+    this.manualDisconnected = false;
+    const serverUrl = `${environment.CONNECTION_URL}/ws/`;
+    this.ws = new SockJS(serverUrl);
+    this.stompClient = Stomp.over(this.ws);
     this.connect(username);
     console.log("Connected to topic");
   }
 
   private connect(username: string) {
-    const serverUrl = `${environment.CONNECTION_URL}/ws/`;
-    this.ws = new SockJS(serverUrl);
-    this.stompClient = Stomp.over(this.ws);
     const that = this;
-    this.stompClient.connect({}, function () {
-      that.setConnectedStatus(false);
-      that.subscribeToTopic(that);
-      that.addUserMessage(username);
-    });
+    this.stompClient.connect(
+      "",
+      "",
+      () => {
+        that.setConnectedStatus(false);
+        that.subscribeToTopic(that);
+        that.addUserMessage(username);
+      },
+      () => {
+        console.log("Connection lost, Reconnecting");
+        setTimeout(() => that.initializeWebSocketConnection(username), 500);
+      },
+      () => {
+        if (!this.manualDisconnected) {
+          console.log("Connection closed, Reconnecting");
+          setTimeout(() => that.initializeWebSocketConnection(username), 500);
+        }
+      }
+    );
   }
 
   private subscribeToTopic(that: this) {
@@ -67,6 +83,7 @@ export class MessageService {
   }
 
   disconnect() {
+    this.manualDisconnected = true;
     this.setConnectedStatus(true);
     this.messages = [];
     if (this.stompClient !== null) {
